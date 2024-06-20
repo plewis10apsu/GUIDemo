@@ -2,9 +2,7 @@ package demo.guidemo;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,12 +18,25 @@ public class HelloController implements Initializable {
     @FXML private ChoiceBox choiceBox;
     @FXML private Label choiceBoxLabel;
 
-    /*
-    * This will update the Label for the ChoiceBox
-    */
+    //These items are for the ComboBox example
+    @FXML private ComboBox comboBox;
+    @FXML private Label comboBoxLabel;
+
+    //These items are for the RadioButton Objects
+    @FXML private RadioButton radioPHP;
+    @FXML private RadioButton radioJava;
+    @FXML private RadioButton radioCSharp;
+    @FXML private RadioButton radioCPlus;
+    @FXML private Label radioLabel;
+    private ToggleGroup favLangToggleGroup;
+
+    /**
+     * This will update the Label for the ChoiceBox
+     */
     public void choiceBoxButtonPushed() {
         choiceBoxLabel.setText("My favorite fruit is: \n" + choiceBox.getValue().toString());
     }
+
 
     public void pizzaOrderButtonPushed() {
         String order = "Toppings are:";
@@ -41,8 +52,32 @@ public class HelloController implements Initializable {
         pizzaOrderLabel.setText(order);
     }
 
+    /**
+     * This will update the comboBoxLabel when the ComboBox is changed
+     */
+    public void comboBoxWasUpdated() {
+        this.comboBoxLabel.setText("Course selected: \n" + comboBox.getValue().toString());
+    }
+
+    /**
+     * This will update the radioButtonLabel when a different radio button is pushed
+     */
+    public void radioButtonChanged() {
+        if (favLangToggleGroup.getSelectedToggle().equals(radioPHP)) {
+            radioLabel.setText("The favorite language is PHP");
+        } else if (favLangToggleGroup.getSelectedToggle().equals(radioJava)) {
+            radioLabel.setText("The favorite language is Java");
+        } else if (favLangToggleGroup.getSelectedToggle().equals(radioCSharp)) {
+            radioLabel.setText("The favorite language is C#");
+        } else if (favLangToggleGroup.getSelectedToggle().equals(radioCPlus)) {
+            radioLabel.setText("The favorite language is C++");
+        }
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //This item is for configuring the CheckBox Label
         pizzaOrderLabel.setText("");
         //These items are for configuring the ChoiceBox example
         choiceBoxLabel.setText("");
@@ -50,5 +85,15 @@ public class HelloController implements Initializable {
         choiceBox.getItems().add("bananas");
         choiceBox.getItems().addAll("oranges", "pears", "strawberrires");
         choiceBox.setValue("apples");
+        //These items are for configuring the ComboBox
+        comboBoxLabel.setText("");
+        comboBox.getItems().addAll("CSCI 4100", "CSCI 4101", "CSCI 4102", "CSCI 4103");
+        //These items are for configuring the RadioButtons
+        radioLabel.setText("");
+        favLangToggleGroup = new ToggleGroup();
+        this.radioPHP.setToggleGroup(favLangToggleGroup);
+        this.radioJava.setToggleGroup(favLangToggleGroup);
+        this.radioCSharp.setToggleGroup(favLangToggleGroup);
+        this.radioCPlus.setToggleGroup(favLangToggleGroup);
     }
 }
