@@ -1,5 +1,6 @@
 package demo.guidemo;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -29,6 +30,11 @@ public class HelloController implements Initializable {
     @FXML private RadioButton radioCPlus;
     @FXML private Label radioLabel;
     private ToggleGroup favLangToggleGroup;
+
+    //These items are for the ListView and the TextArea example
+    @FXML private ListView listView;
+    @FXML private TextArea golfTextArea;
+    @FXML private Button golfButton;
 
     /**
      * This will update the Label for the ChoiceBox
@@ -74,6 +80,20 @@ public class HelloController implements Initializable {
         }
     }
 
+    /**
+     * This method will copy the Strings from the ListView and put them in the TextArea
+     */
+    public void listViewButtonPushed() {
+        String textAreaString = "";
+        //Return an observable list to build a string
+        ObservableList listOfItems = listView.getSelectionModel().getSelectedItems();
+
+        for (Object item : listOfItems) {
+            textAreaString += item.toString() + "\n";
+        }
+        golfTextArea.setText(textAreaString);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -95,5 +115,9 @@ public class HelloController implements Initializable {
         this.radioJava.setToggleGroup(favLangToggleGroup);
         this.radioCSharp.setToggleGroup(favLangToggleGroup);
         this.radioCPlus.setToggleGroup(favLangToggleGroup);
+        //These items are for configuring the ListView
+        listView.getItems().add("Golf Balls");
+        listView.getItems().addAll("Wedges", "Irons", "Tees", "Driver", "Putter");
+        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 }
