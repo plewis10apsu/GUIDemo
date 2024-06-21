@@ -27,16 +27,17 @@
                   <TableColumn fx:id="birthday" prefWidth="257.0" text="Birthday" />
               </columns>
             </TableView>
-            <HBox alignment="CENTER_LEFT" prefHeight="101.0" prefWidth="783.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="594.0" spacing="10.0">
                <children>
-                  <TextField fx:id="firstNameTextField" prefHeight="26.0" prefWidth="183.0" promptText="First Name" />
-                  <TextField fx:id="lastNameTextField" prefHeight="26.0" prefWidth="184.0" promptText="Last Name" />
-                  <DatePicker fx:id="birthdayDatePicker" prefHeight="26.0" prefWidth="207.0" promptText="Birthday" />
+                  <TextField fx:id="firstNameTextField" prefHeight="26.0" prefWidth="175.0" promptText="First Name" />
+                  <TextField fx:id="lastNameTextField" prefHeight="26.0" prefWidth="175.0" promptText="Last Name" />
+                  <DatePicker fx:id="birthdayDatePicker" prefHeight="26.0" prefWidth="175.0" promptText="Birthday" />
                </children>
             </HBox>
-            <HBox prefHeight="116.0" prefWidth="594.0">
+            <HBox prefHeight="38.0" prefWidth="594.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#newPersonButtonPushed" text="Add New Person" />
+                  <Button mnemonicParsing="false" onAction="#newPersonButtonPushed" prefHeight="26.0" prefWidth="175.0" text="Add New Person" />
+                  <Button mnemonicParsing="false" onAction="#deleteButtonPushed" prefHeight="26.0" prefWidth="175.0" text="Delete Person(s)" />
                </children>
             </HBox>
          </children>

@@ -9,10 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
@@ -83,6 +80,9 @@ public class TableController implements Initializable {
         tableView.setEditable(true);
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        //This will allow the table to select multiple rows at once
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     //Sample data
@@ -103,5 +103,21 @@ public class TableController implements Initializable {
                                         birthdayDatePicker.getValue());
         //Get all the items from the table as a list, then add the new person to the list
         tableView.getItems().add(newPerson);
+    }
+
+    /*
+     * This method will remove the selected row(s) from the table
+     */
+    public void deleteButtonPushed() {
+        ObservableList<Person> selectedRows, allPeople;
+        allPeople = tableView.getItems();
+
+        //this gives us the rows that are selected
+        selectedRows = tableView.getSelectionModel().getSelectedItems();
+
+        //loop over the selected rows and remove the Person object from the table
+        for(Person person : selectedRows) {
+            allPeople.remove(person);
+        }
     }
 }
