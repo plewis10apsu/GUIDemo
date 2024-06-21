@@ -9,8 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
@@ -26,6 +28,11 @@ public class TableController implements Initializable {
     @FXML private TableColumn<Person, String> firstNameColumn;
     @FXML private TableColumn<Person, String> lastNameColumn;
     @FXML private TableColumn<Person, LocalDate> birthday;
+
+    //Instance variables for new Person object
+    @FXML private TextField firstNameTextField;
+    @FXML private TextField lastNameTextField;
+    @FXML private DatePicker birthdayDatePicker;
 
     /**
      * This method will change the scene to hello-view when the GoBacktoGUIObjectsView Button is pressed
@@ -78,10 +85,23 @@ public class TableController implements Initializable {
         lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
+    //Sample data
     private ObservableList<Person> getPeople() {
         ObservableList<Person> people = FXCollections.observableArrayList();
         people.add(new Person("John", "Doe", LocalDate.of(1990, 1, 1)));
         people.add(new Person("Jane", "Doe", LocalDate.of(1991, 1, 1)));
         return people;
+    }
+
+    /*
+     *  This method will create a new Person object and add it to the table
+     */
+    public void newPersonButtonPushed() {
+        //Create a new Person
+        Person newPerson = new Person(firstNameTextField.getText(),
+                                        lastNameTextField.getText(),
+                                        birthdayDatePicker.getValue());
+        //Get all the items from the table as a list, then add the new person to the list
+        tableView.getItems().add(newPerson);
     }
 }
