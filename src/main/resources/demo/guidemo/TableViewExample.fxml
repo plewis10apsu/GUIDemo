@@ -38,10 +38,11 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#newPersonButtonPushed" prefHeight="26.0" prefWidth="175.0" text="Add New Person" />
                   <Button mnemonicParsing="false" onAction="#deleteButtonPushed" prefHeight="26.0" prefWidth="175.0" text="Delete Person(s)" />
+                  <Button mnemonicParsing="false" onAction="#changeDetailedPersonButtonPushed" prefHeight="26.0" prefWidth="170.0" text="Detailed Person View" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="611.0" layoutY="560.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Go Back to GUI Objects View" />
+      <Button layoutX="611.0" layoutY="560.0" mnemonicParsing="false" onAction="#changeSceneButtonPushed" text="Go Back to GUI Objects View" />
    </children>
 </AnchorPane>

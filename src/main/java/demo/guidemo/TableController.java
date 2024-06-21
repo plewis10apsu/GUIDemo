@@ -34,12 +34,33 @@ public class TableController implements Initializable {
     /**
      * This method will change the scene to hello-view when the GoBacktoGUIObjectsView Button is pressed
      */
-    public void changeScreenButtonPushed(ActionEvent event) throws IOException {
+    public void changeSceneButtonPushed(ActionEvent event) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/demo/guidemo/hello-view.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         //This line gets the Stage information
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setTitle("GUI Objects View");
+        window.setScene(tableViewScene);
+        window.show();
+    }
+
+    /**
+     * This method will pass the selected Person object to the PersonViewController when the DetailedPersonView Button is pressed
+     */
+    public void changeDetailedPersonButtonPushed(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/demo/guidemo/PersonView.fxml")); //set the loader to look at this file
+        Parent tableViewParent = loader.load();
+
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        //access the controller and call a method
+        PersonViewController personViewController = loader.getController(); //get the controller for the obtained file
+        personViewController.initData(tableView.getSelectionModel().getSelectedItem()); //returns a Person object selected in the table
+
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setTitle("Detailed Person View");
         window.setScene(tableViewScene);
         window.show();
     }
