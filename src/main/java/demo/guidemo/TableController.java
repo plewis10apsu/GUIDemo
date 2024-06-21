@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -39,6 +40,28 @@ public class TableController implements Initializable {
         window.show();
     }
 
+    /**
+     * This method will allow the user to double-click on a cell and update the
+     * first name of the person
+     */
+    public void changeFirstNameCellEvent(TableColumn.CellEditEvent editedCell) {
+
+        Person personSelected = tableView.getSelectionModel().getSelectedItem();
+
+        personSelected.setFirstName(editedCell.getNewValue().toString());
+    }
+
+    /**
+     * This method will allow the user to double-click on a cell and update the
+     * last name of the person
+     */
+    public void changeLastNameCellEvent(TableColumn.CellEditEvent editedCell) {
+
+        Person personSelected = tableView.getSelectionModel().getSelectedItem();
+
+        personSelected.setLastName(editedCell.getNewValue().toString());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //This sets up our columns
@@ -48,6 +71,11 @@ public class TableController implements Initializable {
 
         //Load sample data from sample method below
         tableView.setItems(getPeople());
+
+        //Update the table to allow the first and last name fields editable
+        tableView.setEditable(true);
+        firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     private ObservableList<Person> getPeople() {

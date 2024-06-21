@@ -17,8 +17,8 @@
       <Button layoutX="611.0" layoutY="560.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Go Back to GUI Objects View" />
       <TableView fx:id="tableView" layoutX="23.0" layoutY="46.0" prefHeight="200.0" prefWidth="747.0">
         <columns>
-          <TableColumn fx:id="firstNameColumn" prefWidth="240.0" text="First Name" />
-          <TableColumn fx:id="lastNameColumn" prefWidth="267.0" text="Last Name" />
+          <TableColumn fx:id="firstNameColumn" onEditCommit="#changeFirstNameCellEvent" prefWidth="240.0" text="First Name" />
+          <TableColumn fx:id="lastNameColumn" onEditCommit="#changeLastNameCellEvent" prefWidth="267.0" text="Last Name" />
             <TableColumn fx:id="birthday" prefWidth="239.0" text="Birthday" />
         </columns>
       </TableView>
