@@ -1,14 +1,22 @@
 package demo.guidemo;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
+
     //These items are for the CheckBox example
     @FXML private Label pizzaOrderLabel;
     @FXML private CheckBox pepperoniCheckBox;
@@ -34,16 +42,10 @@ public class HelloController implements Initializable {
     //These items are for the ListView and the TextArea example
     @FXML private ListView listView;
     @FXML private TextArea golfTextArea;
-    @FXML private Button golfButton;
 
     /**
-     * This will update the Label for the ChoiceBox
+     * This method will update the Label for the CheckBox objects
      */
-    public void choiceBoxButtonPushed() {
-        choiceBoxLabel.setText("My favorite fruit is: \n" + choiceBox.getValue().toString());
-    }
-
-
     public void pizzaOrderButtonPushed() {
         String order = "Toppings are:";
         if (pepperoniCheckBox.isSelected()) {
@@ -59,14 +61,21 @@ public class HelloController implements Initializable {
     }
 
     /**
-     * This will update the comboBoxLabel when the ComboBox is changed
+     * This method will update the Label for the ChoiceBox
+     */
+    public void choiceBoxButtonPushed() {
+        choiceBoxLabel.setText("My favorite fruit is: \n" + choiceBox.getValue().toString());
+    }
+
+    /**
+     * This method will update the comboBoxLabel when the ComboBox is changed
      */
     public void comboBoxWasUpdated() {
         this.comboBoxLabel.setText("Course selected: \n" + comboBox.getValue().toString());
     }
 
     /**
-     * This will update the radioButtonLabel when a different radio button is pushed
+     * This method will update the radioButtonLabel when different radio buttons are  pushed
      */
     public void radioButtonChanged() {
         if (favLangToggleGroup.getSelectedToggle().equals(radioPHP)) {
@@ -94,20 +103,35 @@ public class HelloController implements Initializable {
         golfTextArea.setText(textAreaString);
     }
 
+    /**
+     * This method will change the scene to TableViewExample when the TableView Button is pressed
+     */
+    public void changeScreenButtonPushed(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/demo/guidemo/TableViewExample.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        //This line gets the Stage information
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setTitle("Table View");
+        window.setScene(tableViewScene);
+        window.show();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //This item is for configuring the CheckBox Label
+        //This item is for configuring the CheckBox LabelAC
         pizzaOrderLabel.setText("");
+
         //These items are for configuring the ChoiceBox example
         choiceBoxLabel.setText("");
         choiceBox.getItems().add("apples");
         choiceBox.getItems().add("bananas");
         choiceBox.getItems().addAll("oranges", "pears", "strawberrires");
         choiceBox.setValue("apples");
+
         //These items are for configuring the ComboBox
         comboBoxLabel.setText("");
         comboBox.getItems().addAll("CSCI 4100", "CSCI 4101", "CSCI 4102", "CSCI 4103");
+
         //These items are for configuring the RadioButtons
         radioLabel.setText("");
         favLangToggleGroup = new ToggleGroup();
@@ -115,6 +139,7 @@ public class HelloController implements Initializable {
         this.radioJava.setToggleGroup(favLangToggleGroup);
         this.radioCSharp.setToggleGroup(favLangToggleGroup);
         this.radioCPlus.setToggleGroup(favLangToggleGroup);
+
         //These items are for configuring the ListView
         listView.getItems().add("Golf Balls");
         listView.getItems().addAll("Wedges", "Irons", "Tees", "Driver", "Putter");
