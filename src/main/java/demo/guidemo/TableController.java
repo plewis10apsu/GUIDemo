@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +31,9 @@ public class TableController implements Initializable {
     @FXML private TextField firstNameTextField;
     @FXML private TextField lastNameTextField;
     @FXML private DatePicker birthdayDatePicker;
+
+    //Access to the DetailedPersonButton
+    @FXML private Button detailedPersonButton;
 
     /**
      * This method will change the scene to hello-view when the GoBacktoGUIObjectsView Button is pressed
@@ -87,6 +91,13 @@ public class TableController implements Initializable {
         personSelected.setLastName(editedCell.getNewValue().toString());
     }
 
+    /**
+     * This method will enable the detailed view button once a row in the table is selected
+     */
+    public void userClickedOnTable() {
+        this.detailedPersonButton.setDisable(false);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //This sets up our columns
@@ -104,12 +115,16 @@ public class TableController implements Initializable {
 
         //This will allow the table to select multiple rows at once
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        //Disable the DetailedPersonButton until a row is selected (prevents errors)
+        this.detailedPersonButton.setDisable(true);
     }
 
     //Sample data
     private ObservableList<Person> getPeople() {
         ObservableList<Person> people = FXCollections.observableArrayList();
-        people.add(new Person("John", "Doe", LocalDate.of(1990, 1, 1)));
+        people.add(new Person("John", "Adams", LocalDate.of(1735, 10, 30),
+                new Image(getClass().getResource("/demo/guidemo/Images/john-adams-4905395_1280.png").toExternalForm())));
         people.add(new Person("Jane", "Doe", LocalDate.of(1991, 1, 1)));
         return people;
     }

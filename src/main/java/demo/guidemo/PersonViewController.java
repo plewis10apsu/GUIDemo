@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,11 +19,12 @@ public class PersonViewController implements Initializable {
 
     private Person selectedPerson;
 
+
     @FXML private Label firstNameLabel;
     @FXML private Label lastNameLabel;
     @FXML private Label birthdayLabel;
     @FXML private Label ageLabel;
-
+    @FXML private ImageView photo;
 
     /*
      * This method accepts a person to initialize the view
@@ -33,6 +35,7 @@ public class PersonViewController implements Initializable {
         lastNameLabel.setText(person.getLastName());
         birthdayLabel.setText(person.getBirthday().toString());
         ageLabel.setText(Integer.toString(selectedPerson.getAge()));
+        photo.setImage(selectedPerson.getPhoto());
     }
 
     /**
@@ -47,6 +50,8 @@ public class PersonViewController implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
