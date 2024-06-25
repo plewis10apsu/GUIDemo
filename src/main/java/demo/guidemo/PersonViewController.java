@@ -64,7 +64,7 @@ public class PersonViewController implements Initializable {
      */
     public void changeImageButtonPushed(ActionEvent event) throws IOException {
         // Go to the event in our window ->  get the Source -> get the Scene -> get the Window
-        // The way the initial program launches, is the Stage is passed in from the start method,
+        // The way the initial program launches, the Stage is passed in from the start method,
         // in this case, we need to get that Stage. (Window == Stage)
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -76,7 +76,7 @@ public class PersonViewController implements Initializable {
         this.filePath = fileChooser.showOpenDialog(stage);
         */
 
-        //Open us user's specific directory
+        //Open a user's specific directory
         String userDirectoryString = System.getProperty("user.home") + File.separator + "Pictures"; //Set up user directory based on user home
         File userDirectory = new File(userDirectoryString);
 
