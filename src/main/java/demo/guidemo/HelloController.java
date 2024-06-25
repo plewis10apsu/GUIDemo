@@ -39,6 +39,9 @@ public class HelloController implements Initializable {
     @FXML private Label radioLabel;
     private ToggleGroup favLangToggleGroup;
 
+    //This is the spinner object to store grade information
+    @FXML private Spinner gradeSpinner;
+
     //These items are for the ListView and the TextArea example
     @FXML private ListView listView;
     @FXML private TextArea golfTextArea;
@@ -116,6 +119,11 @@ public class HelloController implements Initializable {
         window.show();
     }
 
+    /*
+    *
+     */
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //This item is for configuring the CheckBox LabelAC
@@ -144,5 +152,12 @@ public class HelloController implements Initializable {
         listView.getItems().add("Golf Balls");
         listView.getItems().addAll("Wedges", "Irons", "Tees", "Driver", "Putter");
         listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        //Configure the Spinner with values of 0-100
+        SpinnerValueFactory<Integer> gradesValueFactory = new SpinnerValueFactory.
+                IntegerSpinnerValueFactory(0, 100, 75); //min (0), max (100), default (75)
+        gradeSpinner.setValueFactory(gradesValueFactory);
+        gradeSpinner.setEditable(true);
+        `
     }
 }
