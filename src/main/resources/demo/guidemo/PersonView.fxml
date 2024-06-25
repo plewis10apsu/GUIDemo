@@ -74,6 +74,7 @@
                </children>
             </GridPane>
             <ImageView fx:id="photo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Button mnemonicParsing="false" onAction="#changeImageButtonPushed" text="Change Image" />
          </children>
       </VBox>
       <Button layoutX="732.0" layoutY="560.0" mnemonicParsing="false" onAction="#backButtonPushed" text="Back" />
